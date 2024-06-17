@@ -24,11 +24,6 @@ logging.basicConfig(level=logging.INFO,
 # - Бот работает из-под docker контейнера
 def transliterate(text):
     transliteration_dict = {
-        'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D', 'Е': 'E', 'Ё': 'E', 'Ж': 'ZH',
-        'З': 'Z', 'И': 'I', 'Й': 'I', 'К': 'K', 'Л': 'L', 'М': 'M', 'Н': 'N', 'О': 'O',
-        'П': 'P', 'Р': 'R', 'С': 'S', 'Т': 'T', 'У': 'U', 'Ф': 'F', 'Х': 'KH', 'Ц': 'TS',
-        'Ч': 'CH', 'Ш': 'SH', 'Щ': 'SHCH', 'Ъ': '', 'Ы': 'Y', 'Ь': '', 'Э': 'E', 'Ю': 'YU',
-        'Я': 'YA',
         'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'e', 'ж': 'zh',
         'з': 'z', 'и': 'i', 'й': 'i', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o',
         'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'kh', 'ц': 'ts',
@@ -36,8 +31,11 @@ def transliterate(text):
         'я': 'ya'}
     answer = []
     for symbol in text:
-        if symbol in transliteration_dict:
-            answer.append(transliteration_dict.get(symbol))
+        if symbol.lower() in transliteration_dict:
+            new_symbol = transliteration_dict.get(symbol.lower())
+            if symbol.isupper():
+                new_symbol = new_symbol.upper()
+            answer.append(new_symbol)
         else:
             answer.append(symbol)
     return ''.join(answer)
