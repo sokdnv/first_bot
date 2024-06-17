@@ -8,6 +8,7 @@
 
 1. Откройте файл `Dockerfile`.
 2. Замените `'your_token'` на свой токен бота, полученный от [BotFather](https://core.telegram.org/bots#6-botfather).
+3. Далее выполните стандарный запуск через Docker.
 
 Пример:
 
